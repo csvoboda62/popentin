@@ -12,6 +12,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        return new Response('bienvenue sur Popentin cool ça marche test2');
+        return new Response('kevin t une merde');
     }
 }
