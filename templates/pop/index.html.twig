@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pop index{% endblock %}
+
+{% block body %}
+    <h1>Pop index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Number</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pop in pops %}
+            <tr>
+                <td>{{ pop.id }}</td>
+                <td>{{ pop.name }}</td>
+                <td>{{ pop.number }}</td>
+                <td>
+                    <a href="{{ path('app_pop_show', {'id': pop.id}) }}">show</a>
+                    <a href="{{ path('app_pop_edit', {'id': pop.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pop_new') }}">Create new</a>
+{% endblock %}
