@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/pop')]
+#[Route('/admin/pop')]
 class PopController extends AbstractController
 {
     #[Route('/', name: 'app_pop_index', methods: ['GET'])]
