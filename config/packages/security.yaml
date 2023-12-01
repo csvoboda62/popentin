@@ -7,22 +7,27 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Admin
                 property: username
+        # used to reload user from session & other features (e.g. switch_user)
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            form_login:
-                check_path: login
-
             logout:
                 path: /logout
                 target: /
 #            lazy: true
-#            provider: app_user_provider
+            provider: app_user_provider
+            custom_authenticator: App\Security\AppAuthenticator
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                always_remember_me: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

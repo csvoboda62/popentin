@@ -1,0 +1,6 @@
+
+# hash password
+symfony console security:hash-password
+
+insert admin
+symfony console dbal:run "insert into admin(username,roles,password) values ('admin','[\"ROLE_ADMIN\"]','admin')"
