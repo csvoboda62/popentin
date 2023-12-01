@@ -17,7 +17,7 @@ class PopController extends AbstractController
     #[Route('/', name: 'app_pop_index', methods: ['GET'])]
     public function index(PopRepository $popRepository): Response
     {
-        return $this->render('pop/index.html.twig', [
+        return $this->render('admin/pop/index.html.twig', [
             'pops' => $popRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ class PopController extends AbstractController
             return $this->redirectToRoute('app_pop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('pop/new.html.twig', [
+        return $this->render('admin/pop/new.html.twig', [
             'pop' => $pop,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class PopController extends AbstractController
     #[Route('/{id}', name: 'app_pop_show', methods: ['GET'])]
     public function show(Pop $pop): Response
     {
-        return $this->render('pop/show.html.twig', [
+        return $this->render('admin/pop/show.html.twig', [
             'pop' => $pop,
         ]);
     }
@@ -62,7 +62,7 @@ class PopController extends AbstractController
             return $this->redirectToRoute('app_pop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('pop/edit.html.twig', [
+        return $this->render('admin/pop/edit.html.twig', [
             'pop' => $pop,
             'form' => $form,
         ]);

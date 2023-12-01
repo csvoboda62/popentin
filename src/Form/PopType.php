@@ -3,6 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Pop;
+use App\Entity\Serie;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,6 +18,16 @@ class PopType extends AbstractType
         $builder
             ->add('name')
             ->add('number')
+            ->add('search')
+            ->add('serie',EntityType::class,[
+                'class' => Serie::class,
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                    return $er->createQueryBuilder('s')
+                        ->orderBy('s.name', 'ASC');
+                },
+                'choice_label' => 'name',
+
+            ])
         ;
     }
 
