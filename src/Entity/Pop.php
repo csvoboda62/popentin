@@ -29,8 +29,12 @@ class Pop
     #[ORM\JoinColumn(nullable: false)]
     private ?Serie $serie = null;
 
+    #[ORM\OneToMany(mappedBy: 'pop', targetEntity: PopImage::class, cascade: ['persist'], orphanRemoval: true)]
+    private Collection $images;
+
     public function __construct()
     {
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -82,6 +86,36 @@ class Pop
     public function setSerie(?Serie $serie): static
     {
         $this->serie = $serie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PopImage>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(PopImage $image): static
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setPop($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(PopImage $image): static
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getPop() === $this) {
+                $image->setPop(null);
+            }
+        }
 
         return $this;
     }
