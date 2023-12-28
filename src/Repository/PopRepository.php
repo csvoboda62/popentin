@@ -21,20 +21,19 @@ class PopRepository extends ServiceEntityRepository
         parent::__construct($registry, Pop::class);
     }
 
-//    /**
-//     * @return Pop[] Returns an array of Pop objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Pop[] Returns an array of Pop objects
+     */
+    public function findPopBySearch(string $value): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.name LIKE :name')
+            ->setParameter('name', '%'.$value.'%')
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Pop
 //    {
