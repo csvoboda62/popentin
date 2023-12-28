@@ -11,6 +11,10 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    {{ render(controller(
+        'App\\Controller\\SearchController::searchBar'
+    )) }}
+
+    {% block body %}{% endblock %}
     </body>
 </html>
