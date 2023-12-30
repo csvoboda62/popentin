@@ -3,5 +3,31 @@
 {% block title %}Accueil !{% endblock %}
 
 {% block body %}
-    <a href="{{ path('admin') }}">pop</a>
+    <div class="container-fluid text-center">
+        <div class="row justify-content-center ">
+            {% for pop in pops %}
+                <div class="col-8 col-xl-2 col-sm-3 m-2 ">
+                    <div class="card ">
+                        {% if pop.images[0] is defined %}
+                            <img src="{{ vich_uploader_asset(pop.images[0], 'file') }}" class="img-fluid" alt="...">
+                        {% else %}
+                            <img src="..." class="card-img-top" alt="...">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pop.name }}</h5>
+                            <a href="#" class="btn btn-primary">Voir les details</a>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
+
+
 {% endblock %}

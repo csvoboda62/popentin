@@ -35,6 +35,16 @@ class PopRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findNewPops(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults(9)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    public function findOneBySomeField($value): ?Pop
 //    {
 //        return $this->createQueryBuilder('p')
