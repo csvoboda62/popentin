@@ -18,13 +18,16 @@ class SearchController extends AbstractController
             ->add('query', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Entrez un mot-clé'
+                    'class' => 'form-control me-2 d-inline',
+                    'placeholder' => 'Recherche'
                 ]
             ])
             ->add('recherche', SubmitType::class, [
+                'label' => '<i class="bi bi-search text-dark"></i>',
+                'label_html'=>true,
                 'attr' => [
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-light d-inline',
+                    'type' => 'button',
                 ]
             ])
             ->getForm();

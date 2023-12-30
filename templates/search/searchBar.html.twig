@@ -1,2 +1,14 @@
-{{ form(form) }}
+{{ form_start(form) }}
+<div class="my-custom-class-for-errors">
+    {{ form_errors(form) }}
+</div>
 
+<div class="row">
+    <div class="col">
+        {{ form_row(form.query) }}
+    </div>
+    <div class="col">
+        {{ form_row(form.recherche) }}
+    </div>
+</div>
+{{ form_end(form) }}
