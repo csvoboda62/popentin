@@ -1,0 +1,6 @@
+#!/bin/bash
+# Wrapper pour bin/console qui masque les avertissements de dépréciation PHP 8.4
+
+# Exécuter la console Symfony en filtrant les dépréciations
+php bin/console "$@" 2>&1 | grep -v "Deprecated:" | grep -v "Implicitly marking parameter"
+
